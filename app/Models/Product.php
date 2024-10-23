@@ -24,6 +24,7 @@ class Product extends Model implements HasMedia
         'description',
         'image_path',
         'values',
+        'published'
     ];
 
     protected $casts = [
