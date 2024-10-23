@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
+Route::get('/test', function () {
+    Excel::import(new ProductsImport, "C:\Users\Yusup\Desktop\ssss.xlsx");
+});
+
 Route::get('/products/export', function (\Illuminate\Http\Request $request) {
     // Проверяем, что запрос подписан корректно
     if (!$request->hasValidSignature()) {

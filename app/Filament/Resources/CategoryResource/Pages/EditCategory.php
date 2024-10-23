@@ -18,27 +18,27 @@ class EditCategory extends EditRecord
             // Actions\DeleteAction::make(),
         ];
     }
-    // protected function mutateFormDataBeforeFill(array $data): array
-    // {
-    //     $category = $this->getRecord();
-    //     $cat = $category;
-    //     while (blank($cat->products->first())) $cat = $cat->childrens->first();
-    //     $keys = $cat->products->first()->values;
-    //     $sk = $category->show_keys;
-    //     $k = array_map(function ($k, $v) use ($sk) {
-    //         if (array_key_exists($k, $sk)) return [$k => $v['name']];
-    //         else if (array_key_exists($v['name'], $sk)) return [$k => $v['name']];
-    //     }, array_keys($keys), $keys);
-    //     $k = array_filter($k);
-    //     foreach ($k as $v) $this->keys += $v;
-    //     foreach ($data['show_keys'] as $k => $v) {
-    //         if (array_key_exists($k, $this->keys)) $ret[$this->keys[$k]] = $v;
-    //         else $ret[$k] = $v;
-    //     }
-    //     if (isset($ret)) $data['show_keys'] = $ret;
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $category = $this->getRecord();
+        $cat = $category;
+        while (blank($cat->products->first())) $cat = $cat->childrens->first();
+        $keys = $cat->products->first()->values;
+        $sk = $category->show_keys;
+        $k = array_map(function ($k, $v) use ($sk) {
+            if (array_key_exists($k, $sk)) return [$k => $v['name']];
+            else if (array_key_exists($v['name'], $sk)) return [$k => $v['name']];
+        }, array_keys($keys), $keys);
+        $k = array_filter($k);
+        foreach ($k as $v) $this->keys += $v;
+        foreach ($data['show_keys'] as $k => $v) {
+            if (array_key_exists($k, $this->keys)) $ret[$this->keys[$k]] = $v;
+            else $ret[$k] = $v;
+        }
+        if (isset($ret)) $data['show_keys'] = $ret;
 
-    //     return $data;
-    // }
+        return $data;
+    }
     // public function save(bool $shouldRedirect = true, bool $shouldSendSavedNotification = true): void
     // {
     //     foreach ($this->data['show_keys'] as $key => $value) {

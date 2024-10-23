@@ -49,7 +49,7 @@ class ProductsExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Updated At',
             'Published',
         ];
-        return array_merge($mainHeadings, array_values($this->getHeadings($this->products)->toArray()));
+        return array_merge($mainHeadings, array_values($this->getHeadings($this->products)->toArray()), ['Action']);
     }
 
     private function getHeadings($products)
