@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Log;
 */
 
 Route::get('/test', function () {
-    Excel::import(new ProductsExport(2), "products-test.xlsx");
+    Excel::export(new ProductsExport(2), "products-test.xlsx");
 });
 
 Route::get('/products/export', function (\Illuminate\Http\Request $request) {
