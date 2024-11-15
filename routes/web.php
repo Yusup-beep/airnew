@@ -9,9 +9,15 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Imports\ProductsImport;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+
+use function PHPUnit\Framework\returnSelf;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +29,31 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-Route::get('/test', function () {
-    Excel::import(new ProductsImport, "C:\Users\yusup\Downloads\products-6718e2a6a8943.xlsx");
-});
+// Route::get('/test', function () {
+//     $category = Category::find(201);
+//     $keys = $category->show_keys;
+//     $newValue = "тест 10";
+//     $keys[$newValue] = "1";
+//     $newValue = "тест 11";
+//     $keys[$newValue] = "1";
+//     $newValue = "тест 12";
+//     $keys[$newValue] = "1";
+//     $category->update([
+//         "show_keys" => $keys
+//     ]);
+//     // $value = [
+//     //     Str::slug($newValue) => [
+//     //         "name" => $newValue,
+//     //         "code" => Str::slug($newValue),
+//     //         "value" => ""
+//     //     ]
+//     // ];
+//     // $products = $category->products()->get();
+//     // $products->each(function ($product) use ($value) {
+//     //     $product->values = array_merge($product->values ?? [], $value);
+//     // });
+//     // return $products;
+// });
 
 Route::get('/products/export', function (\Illuminate\Http\Request $request) {
     // Проверяем, что запрос подписан корректно
