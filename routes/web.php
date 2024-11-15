@@ -29,6 +29,7 @@ use function PHPUnit\Framework\returnSelf;
 |
 */
 
+<<<<<<< HEAD
 // Route::get('/test', function () {
 //     $category = Category::find(201);
 //     $keys = $category->show_keys;
@@ -54,6 +55,11 @@ use function PHPUnit\Framework\returnSelf;
 //     // });
 //     // return $products;
 // });
+=======
+Route::get('/test', function () {
+    Excel::download(new ProductsExport(2), "products-test.xlsx");
+});
+>>>>>>> 79a17f196eac3de55dadf1d985c6a6d73348c493
 
 Route::get('/products/export', function (\Illuminate\Http\Request $request) {
     // Проверяем, что запрос подписан корректно
